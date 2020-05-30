@@ -1,4 +1,8 @@
-# MS Azurez-ML Study
+# MS Azure-ML SDK Study
+
+Learning how to use Azure-ML SDK by creating classification models for the Poker Hand Dataset
+
+https://archive.ics.uci.edu/ml/datasets/Poker+Hand
 
 A quick demonstration on
 
@@ -59,6 +63,6 @@ The possible classes for a given hand:
 
 ## The Sphinx PPython Documentation Generator
 
-From the Sphinx website:
+From the Sphinx [website](https://www.sphinx-doc.org/en/master/index.html):
 
 > *Sphinx is a tool that makes it easy to create intelligent and beautiful documentation, written by Georg Brandl and licensed under the BSD license.*

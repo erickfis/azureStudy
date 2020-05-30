@@ -61,7 +61,7 @@ The possible classes for a given hand:
 - Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
 
-## The Sphinx PPython Documentation Generator
+## The Sphinx Python Documentation Generator
 
 From the Sphinx [website](https://www.sphinx-doc.org/en/master/index.html):
 

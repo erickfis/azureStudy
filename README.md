@@ -57,4 +57,8 @@ The possible classes for a given hand:
 - Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
 
-## The Sphinx Package
+## The Sphinx PPython Documentation Generator
+
+From the Sphinx website:
+
+> *Sphinx is a tool that makes it easy to create intelligent and beautiful documentation, written by Georg Brandl and licensed under the BSD license.*

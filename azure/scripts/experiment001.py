@@ -23,6 +23,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model.logistic import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
 from azureml.core import Run
 
@@ -129,6 +130,24 @@ results = trainer(model, model_name)
 print('model name:', results['model name'])
 print(f'test_score (accuracy): {results["test_score"]:.4f}')
 run.log(model_name, results)
+
+# Random Forest
+model = RandomForestClassifier(random_state=95276)
+model_name = 'Random Forest'
+results = trainer(model, model_name)
+print('model name:', results['model name'])
+print(f'test_score (accuracy): {results["test_score"]:.4f}')
+run.log(model_name, results)
+
+# Gradient Boost
+model = GradientBoostingClassifier(random_state=95276)
+model_name = 'Gradient Boosting'
+results = trainer(model, model_name)
+print('model name:', results['model name'])
+print(f'test_score (accuracy): {results["test_score"]:.4f}')
+run.log(model_name, results)
+
+
 
 # azure finish
 run.complete()

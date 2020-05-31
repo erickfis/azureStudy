@@ -81,3 +81,8 @@ To run scripts as experiments, we need a run config that defines the environment
     exp = Experiment(workspace=ws, name='my exp')
     run = exp.submit(config=script_run_config)
     run.wait_for_completion(show_output=True)
+
+
+## Estimators
+
+Estimator are a high level abstraction layer that encapsulates a run configuration and a script run configuration into one object.

@@ -56,9 +56,8 @@ The possible classes for a given hand:
 
 ### Information about the dataset
 
-- [Poker Hand Dataset](https://archive.ics.uci.edu/ml/datasets/Poker+Hand)
-- The Poker Hand Dataset - from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
-- Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+> [The Poker Hand Dataset](https://archive.ics.uci.edu/ml/datasets/Poker+Hand) - from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
+> Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
 
 ## The Sphinx Python Documentation Generator

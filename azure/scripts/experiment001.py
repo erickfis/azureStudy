@@ -24,7 +24,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model.logistic import LogisticRegression
 
-from azure.core import Run
+from azureml.core import Run
 
 
 def dataset_etl(url):

@@ -81,3 +81,26 @@ To run scripts as experiments, we need a run config that defines the environment
     exp = Experiment(workspace=ws, name='my exp')
     run = exp.submit(config=script_run_config)
     run.wait_for_completion(show_output=True)
+
+
+## Estimators
+
+Estimator are a high level abstraction layer that encapsulates a run configuration and a script run configuration into one object.
+
+
+## Passing arguments to the experiment
+
+Just include the following code in the experiment script:
+
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--reg_rate', type=float, dest='reg', default=.01)
+    args = parser.parse_args()
+    reg = args.reg
+
+    print(reg)
+
+To manipulate and pass the arguments, use the option on the Estimator Notebook:
+
+    estimator = Estimator(script_params={'--reg_rate': 0.1})

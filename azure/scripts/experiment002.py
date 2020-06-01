@@ -129,7 +129,6 @@ model_name = 'logistic regression'
 grid_params = {
     'C': [.001, .01, 1, 10],
     'class_weight': ['balanced', None],
-    'max_iter': [500]
 }
 results = trainer(model, model_name, grid_params)
 print('model name:', results['model name'])
@@ -145,6 +144,36 @@ grid_params = {
     'min_samples_leaf': [2, 5, 10],
     'min_samples_split': [2, 5, 10],
     'class_weight': ['balanced', None],
+    }
+results = trainer(model, model_name, grid_params)
+print('model name:', results['model name'])
+print(f'test_score (accuracy): {results["test_score"]:.4f}')
+run.log(model_name, results)
+
+# Random Forest
+model = RandomForestClassifier(random_state=95276)
+model_name = 'Random Forest'
+grid_params = {
+    'max_depth': [3, 5, 10, 15, 20, None],
+    'max_features': [3, 5, 10, 15, None],
+    'min_samples_leaf': [2, 5],
+    'min_samples_split': [2, 5],
+    'class_weight': ['balanced', None],
+    'n_estimators': [10, 50, 100, 200, 500]
+    }
+results = trainer(model, model_name, grid_params)
+print('model name:', results['model name'])
+print(f'test_score (accuracy): {results["test_score"]:.4f}')
+run.log(model_name, results)
+
+# Gradient Boost
+model = GradientBoostingClassifier(random_state=95276)
+model_name = 'Gradient Boosting'
+grid_params = {
+    'min_samples_leaf': [1, 2, 5],
+    'min_samples_split': [2, 5],
+    'class_weight': ['balanced', None],
+    'n_estimators': [1000]
     }
 results = trainer(model, model_name, grid_params)
 print('model name:', results['model name'])

@@ -21,11 +21,7 @@ Python version
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model.logistic import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV
-from azureml.core import Run
 
 
 def dataset_etl(url):
@@ -112,73 +108,3 @@ def trainer(model, model_name, grid_params):
         'parameters': model.get_params()
        }
     return stats
-
-
-# Azure script
-# azure experiment start
-run = Run.get_context()
-
-# the data
-url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/poker/poker-hand-training-true.data'
-
-X_train, X_test, y_train, y_test = dataset_etl(url)
-
-# Logistic Regression model
-model = LogisticRegression(random_state=95276)
-model_name = 'logistic regression'
-grid_params = {
-    'C': [.001, .01, 1, 10],
-    'class_weight': ['balanced', None],
-}
-results = trainer(model, model_name, grid_params)
-print('model name:', results['model name'])
-print(f'test_score (accuracy): {results["test_score"]:.4f}')
-run.log(model_name, results)
-
-# Decision tree model
-model = DecisionTreeClassifier(random_state=95276)
-model_name = 'decision tree'
-grid_params = {
-    'max_depth': [3, 5, 10, 15, 20, None],
-    'max_features': [3, 5, 10, 15, None],
-    'min_samples_leaf': [2, 5, 10],
-    'min_samples_split': [2, 5, 10],
-    'class_weight': ['balanced', None],
-    }
-results = trainer(model, model_name, grid_params)
-print('model name:', results['model name'])
-print(f'test_score (accuracy): {results["test_score"]:.4f}')
-run.log(model_name, results)
-
-# Random Forest
-model = RandomForestClassifier(random_state=95276)
-model_name = 'Random Forest'
-grid_params = {
-    'max_depth': [3, 5, 10, 15, 20, None],
-    'max_features': [3, 5, 10, 15, None],
-    'min_samples_leaf': [2, 5],
-    'min_samples_split': [2, 5],
-    'class_weight': ['balanced', None],
-    'n_estimators': [10, 50, 100, 200, 500]
-    }
-results = trainer(model, model_name, grid_params)
-print('model name:', results['model name'])
-print(f'test_score (accuracy): {results["test_score"]:.4f}')
-run.log(model_name, results)
-
-# Gradient Boost
-model = GradientBoostingClassifier(random_state=95276)
-model_name = 'Gradient Boosting'
-grid_params = {
-    'min_samples_leaf': [1, 2, 5],
-    'min_samples_split': [2, 5],
-    'class_weight': ['balanced', None],
-    'n_estimators': [1000]
-    }
-results = trainer(model, model_name, grid_params)
-print('model name:', results['model name'])
-print(f'test_score (accuracy): {results["test_score"]:.4f}')
-run.log(model_name, results)
-
-# azure finish
-run.complete()

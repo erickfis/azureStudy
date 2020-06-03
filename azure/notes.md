@@ -1,6 +1,7 @@
 # Notes on Azure ML
 
 ## Azure Machine Learning
+
 - scalable on demand compute
 - data storage
 - automated model training, deploy & management

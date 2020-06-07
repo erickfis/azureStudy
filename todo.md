@@ -1,14 +1,12 @@
 # TODO
 
-## 2020-06-01
-
-- add model registration
-- process RandomForestClassifier
-- process GradientBoostingClassifier
+What is coming next:
 
 
-## 2020-05-31
+## New plans in 2020-06-07
 
-- add grid_search
-- add cross_validation
-- add model registration
+- evaluate score for automl model on testing set
+- use azureml pipelines
+- test more models
+- start the sphinx structure
+- write guide on sphinx

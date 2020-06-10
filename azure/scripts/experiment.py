@@ -93,9 +93,9 @@ else:
 print(f'Running {model_name}')
 results = res.trainer(data, model, model_name, grid_params)
 print('model name:', results['model name'])
-print(f'test_score (accuracy): {results["test_score"]:.4f}')
+print(f'test_score (accuracy): {results["cv_score"]:.4f}')
+run.log('accuracy', results['cv_score'])
 run.log(model_name, results)
-run.log('accuracy', results['test_score'])
 
 # azure finish
 run.complete()

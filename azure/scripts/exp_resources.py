@@ -20,7 +20,7 @@ Python version
 
 import pandas as pd
 
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 
 
@@ -87,11 +87,11 @@ def split_data(df):
     X.drop('class', axis=1, inplace=True)
     y = df['class'].copy()
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=.3, random_state=95276
-        )
+    # X_train, X_test, y_train, y_test = train_test_split(
+    #     X, y, test_size=.3, random_state=95276
+    #     )
 
-    return (X_train, X_test, y_train, y_test)
+    return (X, y)
 
 
 def trainer(data, model, model_name, grid_params):
@@ -114,7 +114,8 @@ def trainer(data, model, model_name, grid_params):
 
     """
     # data unpacking
-    X_train, X_test, y_train, y_test = data
+    # X_train, X_test, y_train, y_test = data
+    X, y = data
 
     # the grid
     grid = GridSearchCV(
@@ -122,15 +123,13 @@ def trainer(data, model, model_name, grid_params):
         scoring='accuracy',
         n_jobs=-1, cv=5
         )
-    grid.fit(X_train, y_train)
+    grid.fit(X, y)
 
     # the model
     model = grid.best_estimator_
-    test_score = model.score(X_test, y_test)
     stats = {
         'model name': model_name,
-        'train_score': grid.best_score_,
-        'test_score': test_score,
+        'cv_score': grid.best_score_,
         'parameters': model.get_params()
        }
     return stats

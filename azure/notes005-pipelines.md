@@ -90,3 +90,76 @@ The experiment code:
     os.makedirs(output_folder, exists_ok=True)
     path = os.path.join(output_folder, 'proc_data.csv')
     proc_data.to_csv(path)
+
+
+## Caching steps
+
+If a pipeline has 3 steps and you need to change something the last step,
+it is not necessary to process steps 1 & 2 again. This is the default behavior.
+
+The step reuse, to avoid unnecessary processing, can be controlled as follows:
+
+    step1 = PythonScriptStep(allow_reuse=False)
+
+To force all the steps to be run again:
+
+    pipe_run = exp.submit(train_pipe, regenerate_outputs=True)
+
+
+## Publishing a pipeline
+
+Pipelines can be published so they can be executed on demand through a
+REST endpoint request.
+
+    published_pipe = train_pipe.publish(
+        name='train_pipe',
+        description='description',
+        version='1.0'
+        )
+
+or
+
+    my_pipe_exp = ws.experiments.get('my_pipe_exp')
+    run = list(my_pipe_exp.get_runs())[0]
+
+    published_pipe = run.publish_pipeline(
+        name='train_pipe',
+        description='description',
+        version='1.0'
+        )
+
+The url for the rest endpoint:
+
+    rest_endpoint = published_pipe.endpoint
+
+
+## Using a published pipeline
+
+    import requests
+
+    response = requests.post(
+        rest_endpoint,
+        headers=auth_header,
+        json={'ExperimentName': 'train_pipe'}
+        )
+    run_id = response.json()['Id']
+
+
+## Passing arguments on a request
+
+Define the parameter in the steps:
+
+    stepX = EstimatorStep(
+        estimator_entry_script_arguments=['--folder', folder, '--reg', reg_param]
+        )
+
+Then use it on the request:
+
+    response = requests.post(
+        rest_endpoint,
+        headers=auth_header,
+        json={
+            'ExperimentName': 'train_pipe'
+            'ParameterAssignments': {'reg_rate': .1}
+        }
+    )

@@ -25,21 +25,23 @@ from sklearn.model_selection import GridSearchCV
 
 
 def dataset_etl(url):
-    """
-    Run a quick ETL process.
+    """Short summary.
 
-    Input
+    Long summary
 
-    - url: data location
+    Args
 
-    Output
+    - url (string): Description of parameter `url`.
 
-    A tuple containing:
+    Returns
 
-    - train set
-    - test set
-    - train set classisications
-    - test set classisications
+    - type: Description of returned object.
+
+    Usage
+
+        import modulo.funcao as fn
+        output = fn(args)
+
     """
     df = pd.read_csv(url)
 
